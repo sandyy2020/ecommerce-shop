@@ -31,10 +31,10 @@
 	<meta name="twitter:card" content="summary_large_image" />
 	
 
-	<link rel="stylesheet" type="text/css" href="{{asset('front-asset/css/slick.css')}}" />
-	<link rel="stylesheet" type="text/css" href="{{asset('front-asset/css/slick-theme.css')}}" />
-	<link rel="stylesheet" type="text/css" href="{{asset('front-asset/css/video-js.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('front-asset/css/style.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{asset('front-assets/css/slick.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{asset('front-assets/css/slick-theme.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{asset('front-assets/css/video-js.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('front-assets/css/style.css')}}" />
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -765,12 +765,12 @@
 		</div>
 	</div>
 </footer>
-<script src="{{asset('front-assetjs/jquery-3.6.0.min.js')}}"></script>
-<script src="{{asset('front-assetjs/bootstrap.bundle.5.1.3.min.js')}}"></script>
-<script src="{{asset('front-assetjs/instantpages.5.1.0.min.js')}}"></script>
-<script src="{{asset('front-assetjs/lazyload.17.6.0.min.js')}}"></script>
-<script src="{{asset('front-assetjs/slick.min.js')}}"></script>
-<script src="{{asset('front-assetjs/custom.js')}}"></script>
+<script src="{{asset('front-assets/js/jquery-3.6.0.min.js')}}"></script>
+<script src="{{asset('front-assets/js/bootstrap.bundle.5.1.3.min.js')}}"></script>
+<script src="{{asset('front-assets/js/instantpages.5.1.0.min.js')}}"></script>
+<script src="{{asset('front-assets/js/lazyload.17.6.0.min.js')}}"></script>
+<script src="{{asset('front-assets/js/slick.min.js')}}"></script>
+<script src="{{asset('front-assets/js/custom.js')}}"></script>
 <script>
 window.onscroll = function() {myFunction()};
 
