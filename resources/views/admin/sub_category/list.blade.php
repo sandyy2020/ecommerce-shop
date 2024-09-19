@@ -45,6 +45,7 @@
 											<th width="60">ID</th>
 											<th>Name</th>
 											<th>Slug</th>
+											<th>Show On Home</th>
                                             <th>Category</th>
 											<th width="100">Status</th>
 											<th width="100">Action</th>
@@ -58,6 +59,7 @@
 											<td>{{$subcategory->id}}</td>
 											<td>{{$subcategory->name}}</td>
 											<td>{{$subcategory->slug}}</td>
+											<td>{{$subcategory->showHome}}</td>
                                             <td>{{$subcategory->category->name ?? 'No Category'}}</td>
 											<td>
                                                 @if($subcategory->status==1)
