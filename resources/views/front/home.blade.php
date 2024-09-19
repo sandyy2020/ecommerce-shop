@@ -2,7 +2,7 @@
 <html class="no-js" lang="en_AU" />
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title><?php echo (!empty($title)) ? 'Title-'.$title: 'Home'; ?></title>
+	<title>Laravel Online Shop</title>
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no" />
 
@@ -31,10 +31,10 @@
 	<meta name="twitter:card" content="summary_large_image" />
 	
 
-	<link rel="stylesheet" type="text/css" href="css/slick.css" />
-	<link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
-	<link rel="stylesheet" type="text/css" href="css/video-js.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css?v=<?php echo rand(111,999); ?>" />
+	<link rel="stylesheet" type="text/css" href="{{asset('front-asset/css/slick.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{asset('front-asset/css/slick-theme.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{asset('front-asset/css/video-js.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('front-asset/css/style.css')}}" />
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -765,12 +765,12 @@
 		</div>
 	</div>
 </footer>
-<script src="js/jquery-3.6.0.min.js"></script>
-<script src="js/bootstrap.bundle.5.1.3.min.js"></script>
-<script src="js/instantpages.5.1.0.min.js"></script>
-<script src="js/lazyload.17.6.0.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/custom.js"></script>
+<script src="{{asset('front-assetjs/jquery-3.6.0.min.js')}}"></script>
+<script src="{{asset('front-assetjs/bootstrap.bundle.5.1.3.min.js')}}"></script>
+<script src="{{asset('front-assetjs/instantpages.5.1.0.min.js')}}"></script>
+<script src="{{asset('front-assetjs/lazyload.17.6.0.min.js')}}"></script>
+<script src="{{asset('front-assetjs/slick.min.js')}}"></script>
+<script src="{{asset('front-assetjs/custom.js')}}"></script>
 <script>
 window.onscroll = function() {myFunction()};
 
