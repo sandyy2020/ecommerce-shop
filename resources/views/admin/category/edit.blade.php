@@ -60,6 +60,15 @@
 								</select>
 							</div>
 						</div>
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label for="status">Show On Home</label>
+								<select name="showHome" id="showHome" class="form-control">
+									<option {{($category->showHome=='Yes')?'selected':''}} value="1">Active</option>
+									<option {{($category->showHome=='No')?'selected':''}} value="0">Block</option>
+								</select>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
