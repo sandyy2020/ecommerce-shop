@@ -4,7 +4,7 @@
     <div class="container">
         <div class="light-font">
             <ol class="breadcrumb primary-color mb-0">
-                <li class="breadcrumb-item"><a class="white-text" href="{{route('front.home')}}">Home</a></li>
+                <li class="breadcrumb-item"><a class="white-text" href="{{route('front.shop')}}">Home</a></li>
                 <li class="breadcrumb-item active">Shop</li>
             </ol>
         </div>
@@ -27,19 +27,19 @@
                             <div class="accordion-item">
                                 @if($category->subcategories->isNotEmpty())
                                 <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-{{$key}}" aria-expanded="false" aria-controls="collapseOne">
+                                    <button class="accordion-button collapsed {{($categorySelected==$category->id) ?'show':''}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-{{$key}}" aria-expanded="false" aria-controls="collapseOne">
                                         {{$category->name}}
                                     </button>
                                 </h2>
                                 @else
-                                <a href="{{route('front.shop',$category->slug)}}" class="nav-item nav-link">{{$category->name}}</a>
+                                <a href="{{route('front.shop',$category->slug)}}" class="nav-item nav-link {{($categorySelected==$category->id) ?'text-primary':''}}">{{$category->name}}</a>
                                 @endif
                                 <div id="collapseOne-{{$key}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
                                     <div class="accordion-body">
                                         @if($category->subcategories->isNotEmpty())
                                         <div class="navbar-nav">
                                             @foreach($category->subcategories as $subcategory)
-                                            <a href="{{route('front.shop',[$category->slug,$subcategory->slug])}}" class="nav-item nav-link">{{$subcategory->name}}</a>
+                                            <a href="{{route('front.shop',[$category->slug,$subcategory->slug])}}" class="nav-item nav-link {{($SubCategorySelected==$subcategory->id) ?'text-primary':''}}">{{$subcategory->name}}</a>
                                             @endforeach
                                         </div>
                                         @endif
@@ -127,7 +127,7 @@
 
                         <div class="card product-card">
                             <div class="product-image position-relative">
-                                <a href="" class="product-img"><img class="card-img-top" src="images/product-1.jpg" alt=""></a>
+                                <a href="" class="product-img"><img class="card-img-top" src="{{asset('front-assets/images/product-1.jpg')}}" alt=""></a>
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                 <div class="product-action">
@@ -170,4 +170,22 @@
         </div>
     </div>
 </section>
+@endsection
+@section('customJs')
+<script>
+$('.brand-label').change(function(){
+    apply_filters();
+});
+
+function apply_filters(){
+    var brands=[];
+
+    $(".brand-label").each(function(){
+        if($(this).is(".checked")==true){
+            brands.push($(this).val());
+        }
+    });
+    console.log(brands);
+}
+</script>
 @endsection

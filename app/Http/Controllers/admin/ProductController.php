@@ -53,7 +53,9 @@ class ProductController extends Controller
             $products = new Product();
             $products->title = $request->title;
             $products->slug = $request->slug;
+            $products->short_description = $request->short_description;
             $products->description = $request->description;
+            $products->shipping_returns = $request->shipping_returns;
             $products->price = $request->price;
             $products->compare_price = $request->compare_price;
             $products->sku = $request->sku;
