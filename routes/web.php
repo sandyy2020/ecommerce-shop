@@ -73,8 +73,8 @@ Route::group(['middleware' => 'admin.auth'], function () {
     Route::get('/admin/products/index',[ProductController::class,'index'])->name('products.index');
     Route::get('/admin/products/create',[ProductController::class,'create'])->name('products.create');
     Route::post('/admin/products',[ProductController::class,'store'])->name('products.store');
-    Route::get('/admin/products/{brand}/edit',[ProductController::class,'edit'])->name('products.edit');
-    Route::put('/admin/products/{brand}',[ProductController::class,'update'])->name('products.update');
+    Route::get('/admin/products/{product}/edit',[ProductController::class,'edit'])->name('products.edit');
+    Route::put('/admin/products/{product}',[ProductController::class,'update'])->name('products.update');
     Route::delete('/admin/products/{id}',[ProductController::class,'destroy'])->name('products.destroy');
 
     //productsubcategory routes used in product table
