@@ -51,7 +51,7 @@ class AuthController extends Controller
 
         if($validator->passes()){
             if(Auth::attempt(['email'=>$request->email,'password'=>$request->password],$request->get('remember'))){
-                
+                return redirect()->route('account.profile');
 
             }else{
                 session()->flash('error','Either email/password is incorrect');
@@ -65,10 +65,11 @@ class AuthController extends Controller
         }
     }
     public function profile(){
-        return redirect()->route('account.profile');
+        return view('front.account.profile');
     }
     public function logout(){
         Auth::logout();
-        return redirect()->route('account.login');
+        return redirect()->route('account.login')
+        ->with('success',"You sucessfully Logged Out!!");
     }
 }
