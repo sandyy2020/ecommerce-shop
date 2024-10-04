@@ -34,6 +34,9 @@ Route::get('/',[FrontController::class,'index'])->name('front.home');
 Route::get('/shop/{categorySlug?}/{subCategory?}',[ShopController::class,'index'])->name('front.shop');
 Route::get('/product/{slug}',[ShopController::class,'product'])->name('front.product');
 Route::get('/cart',[CartController::class,'cart'])->name('front.cart');
+Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('front.addToCart');
+
+
 
 
 Route::group(['prefix'=>'account'],function(){
@@ -42,9 +45,11 @@ Route::group(['prefix'=>'account'],function(){
         Route::post('/process-register',[AuthController::class,'processRegister'])->name('account.processRegister');
         Route::get('/login',[AuthController::class,'login'])->name('account.login');
         Route::post('/login',[AuthController::class,'authenticate'])->name('account.authenticate');
+       
     });
     Route::group(['middleware'=>'auth'],function(){
         Route::get('/profile',[AuthController::class,'profile'])->name('account.profile');
+        Route::get('/logout',[AuthController::class,'logout'])->name('account.logout');
 
     });
 });

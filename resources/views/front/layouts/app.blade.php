@@ -110,7 +110,7 @@
                     </ul>
                 </div>
                 <div class="right-nav py-0">
-                    <a href="cart.php" class="ml-3 d-flex pt-2">
+                    <a href="{{route('front.cart')}}" class="ml-3 d-flex pt-2">
                         <i class="fas fa-shopping-cart text-primary"></i>
                     </a>
                 </div>
@@ -191,6 +191,30 @@
                 navbar.classList.remove("sticky");
             }
         }
+        $.ajaxSetup({
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        
+            function addToCart(id){
+
+$.ajax({
+    url:'{{route("front.addToCart")}}',
+    type:'post',
+    data:{id:id},
+    dataType:'json',
+    success:function(response){
+        if(response.status==true){
+            window.location.href="{{route('front.cart')}}";
+        }else{
+            alert(response.message);
+        }
+
+    }
+
+});
+}
     </script>
     @yield('customJs')
 </body>

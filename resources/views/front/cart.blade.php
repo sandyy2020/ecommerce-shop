@@ -29,14 +29,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if(!empty($cartContent))
+                                @foreach($cartContent as $item)
                                 <tr>
                                     <td>
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="images/product-1.jpg" width="" height="">
-                                            <h2>Product Name Goes Here</h2>
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{asset('front-assets/images/product-1.jpg')}}" width="" height="">
+                                            <h2>{{$item->name}}</h2>
                                         </div>
                                     </td>
-                                    <td>$100</td>
+                                    <td>{{$item->price}}</td>
                                     <td>
                                         <div class="input-group quantity mx-auto" style="width: 100px;">
                                             <div class="input-group-btn">
@@ -44,7 +46,7 @@
                                                     <i class="fa fa-minus"></i>
                                                 </button>
                                             </div>
-                                            <input type="text" class="form-control form-control-sm  border-0 text-center" value="1">
+                                            <input type="text" class="form-control form-control-sm  border-0 text-center" value="{{$item->qty}}">
                                             <div class="input-group-btn">
                                                 <button class="btn btn-sm btn-dark btn-plus p-2 pt-1 pb-1">
                                                     <i class="fa fa-plus"></i>
@@ -53,105 +55,14 @@
                                         </div>
                                     </td>
                                     <td>
-                                        $100
+                                        ${{$item->price*$item->qty}}
                                     </td>
                                     <td>
                                         <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="images/product-1.jpg" width="" height="">
-                                            <h2>Product Name Goes Here</h2>
-                                        </div>
-                                    </td>
-                                    <td>$100</td>
-                                    <td>
-                                        <div class="input-group quantity mx-auto" style="width: 100px;">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-minus p-2 pt-1 pb-1">
-                                                <i class="fa fa-minus"></i>
-                                                </button>
-                                            </div>
-                                            <input type="text" class="form-control form-control-sm  border-0 text-center" value="1">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-plus p-2 pt-1 pb-1">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        $100
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="images/product-1.jpg" width="" height="">
-                                            <h2>Product Name Goes Here</h2>
-                                        </div>
-                                    </td>
-                                    <td>$100</td>
-                                    <td>
-                                        <div class="input-group quantity mx-auto" style="width: 100px;">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-minus p-2 pt-1 pb-1">
-                                                <i class="fa fa-minus"></i>
-                                                </button>
-                                            </div>
-                                            <input type="text" class="form-control form-control-sm  border-0 text-center" value="1">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-plus p-2 pt-1 pb-1">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        $100
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="images/product-1.jpg" width="" height="">
-                                            <h2>Product Name Goes Here</h2>
-                                        </div>
-                                    </td>
-                                    <td>$100</td>
-                                    <td>
-                                        <div class="input-group quantity mx-auto" style="width: 100px;">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-minus p-2 pt-1 pb-1">
-                                                <i class="fa fa-minus"></i>
-                                                </button>
-                                            </div>
-                                            <input type="text" class="form-control form-control-sm  border-0 text-center" value="1">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-dark btn-plus p-2 pt-1 pb-1">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        $100
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
-                                    </td>
-                                </tr>                                
+                                @endforeach
+                      @endif
                             </tbody>
                         </table>
                     </div>
@@ -164,7 +75,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between pb-2">
                                 <div>Subtotal</div>
-                                <div>$400</div>
+                                <div>${{Cart::subtotal()}}</div>
                             </div>
                             <div class="d-flex justify-content-between pb-2">
                                 <div>Shipping</div>
@@ -172,7 +83,7 @@
                             </div>
                             <div class="d-flex justify-content-between summery-end">
                                 <div>Total</div>
-                                <div>$420</div>
+                                <div>Cart::subtotal()</div>
                             </div>
                             <div class="pt-5">
                                 <a href="login.php" class="btn-dark btn btn-block w-100">Proceed to Checkout</a>
