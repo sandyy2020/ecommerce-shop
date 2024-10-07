@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\CustomerAddress;
+use App\Models\Order;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
@@ -127,5 +130,56 @@ class CartController extends Controller
         return view('front.checkout',[
             'countries'=>$countries
         ]);
+    }
+    public function processCheckout(Request $request){
+        //step1: Apply validation
+        $validator= Validator::make($request->all(),[
+            'first_name'=>'required|min:5',
+            'last_name'=>'required',
+            'email'=>'required|email',
+            'country'=>'required',
+            'address'=>'required|min:10',
+            'city'=>'required',
+            'state'=>'required',
+            'zip'=>'required',
+            'mobile'=>'required'
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'message'=>"please fix the errors",
+                'status'=>false,
+                'errors'=>$validator->errors()
+            ]);
+        }
+
+        //step2: save user address
+        $user=Auth::user();
+        $customerAddress=CustomerAddress::updateOrCreate(
+            ['user_id'=>$user->id],
+            [
+                'user_id'=>$user->id,
+                'first_name'=>$request->first_name,
+                'last_name'=>$request->last_name,
+                'email'=>$request->email,
+                'mobile'=>$request->mobile,
+                'country_id'=>$request->country,
+                'address'=>$request->address,
+                'apartment'=>$request->appartment,
+                'city'=>$request->city,
+                'state'=>$request->state,
+                'zip'=>$request->zip,
+            ]
+        );
+        if($request->payment_method=='cod'){
+            $shipping=0;
+            $discount=0;
+            $subTotal=Cart::subtotal(2,'.','');
+            $grandTotal=$subTotal+$shipping;
+            $order= new Order;
+            $order->subtotal=$subTotal;
+            $order->shipping=$shipping;
+            $order->grand_total=$grandTotal;
+
+        }
     }
 }
