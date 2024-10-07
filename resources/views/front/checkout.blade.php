@@ -194,7 +194,7 @@
     });
     $("#orderForm").submit(function(event){
         event.preventDefault();
-
+        $('button[type="submit"]').prop('disabled',true);
         $.ajax({
             url:'{{route("front.processCheckout")}}',
             type:'post',
@@ -202,8 +202,11 @@
             dataType:'json',
             success:function(response){
                 var errors=response.errors;
+                $('button[type="submit"]').prop('disabled',false);
+                //front.thankyou
 
-                if(errors.first_name){
+                if(response.status==false){
+                    if(errors.first_name){
                     $("#first_name").addClass('is-invalid')
                     .siblings("p")
                     .addClass('invalid-feedback')
@@ -303,6 +306,9 @@
                     .html('');
                 }
 
+                }else{
+                    window.location.href="{{url('/thanks/')}}/"+response.orderId;
+                }
             }
         });
     });
