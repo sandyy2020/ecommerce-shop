@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductSubCategory;
+use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\admin\TempImagesController;
 use App\Http\Controllers\AuthController;
@@ -104,6 +105,13 @@ Route::group(['middleware' => 'admin.auth'], function () {
     //productsubcategory routes used in product table
     Route::get('admin/subcategories', [ProductSubCategory::class, 'getSubcategories'])->name('get.subcategories');
 
+    //shipping routes
+    Route::get('/admin/shipping/create',[ShippingController::class,'create'])->name('shipping.create');
+    Route::post('/admin/shipping/store',[ShippingController::class,'store'])->name('shipping.store');
+    Route::get('/admin/shipping/{id}',[ShippingController::class,'edit'])->name('shipping.edit');
+    Route::put('/admin/shipping/{id}',[ShippingController::class,'update'])->name('shipping.update');
+
+    
     //temp_images
     Route::post('/admin/upload-temp-image',[TempImagesController::class,'create'])->name('temp-images.create');
     // Route to handle temporary image deletions

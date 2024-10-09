@@ -26,20 +26,20 @@
                                 
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name">
+                                        <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name" value="{{(!empty('$customerAddress')) ? $customerAddress->first_name:''}}">
                                         <p></p>
                                     </div>            
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name">
+                                        <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name" value="{{(!empty('$customerAddress')) ? $customerAddress->last_name:''}}">
                                         <p></p>
                                     </div>            
                                 </div>
                                 
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <input type="text" name="email" id="email" class="form-control" placeholder="Email">
+                                        <input type="text" name="email" id="email" class="form-control" placeholder="Email" value="{{(!empty('$customerAddress')) ? $customerAddress->email:''}}">
                                         <p></p>
                                     </div>            
                                 </div>
@@ -50,7 +50,7 @@
                                             <option value="">Select a Country</option>
                                             @if($countries->isNotEmpty())
                                             @foreach($countries as $country)
-                                            <option value="{{$country->id}}">{{$country->name}}</option>
+                                            <option {{(!empty($customerAddress) && $customerAddress->country_id == $country->id) ? 'selected':''}} value="{{$country->id}}">{{$country->name}}</option>
                                             @endforeach
                                             @endif
                                         </select>
@@ -60,41 +60,41 @@
 
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <textarea name="address" id="address" cols="30" rows="3" placeholder="Address" class="form-control"></textarea>
+                                        <textarea name="address" id="address" cols="30" rows="3" placeholder="Address" class="form-control">{{(!empty('$customerAddress')) ? $customerAddress->address:''}}</textarea>
                                         <p></p>
                                     </div>            
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <input type="text" name="appartment" id="appartment" class="form-control" placeholder="Apartment, suite, unit, etc. (optional)">
+                                        <input type="text" name="appartment" id="appartment" class="form-control" placeholder="Apartment, suite, unit, etc. (optional)" value="{{(!empty('$customerAddress')) ? $customerAddress->apartment:''}}">
                                     </div>            
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <input type="text" name="city" id="city" class="form-control" placeholder="City">
+                                        <input type="text" name="city" id="city" class="form-control" placeholder="City" value="{{(!empty('$customerAddress')) ? $customerAddress->city:''}}">
                                         <p></p>
                                     </div>            
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <input type="text" name="state" id="state" class="form-control" placeholder="State">
+                                        <input type="text" name="state" id="state" class="form-control" placeholder="State" value="{{(!empty('$customerAddress')) ? $customerAddress->state:''}}">
                                         <p></p>
                                     </div>            
                                 </div>
                                 
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <input type="text" name="zip" id="zip" class="form-control" placeholder="Zip">
+                                        <input type="text" name="zip" id="zip" class="form-control" placeholder="Zip" value="{{(!empty('$customerAddress')) ? $customerAddress->zip:''}}">
                                         <p></p>
                                     </div>            
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Mobile No.">
+                                        <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Mobile No." value="{{(!empty('$customerAddress')) ? $customerAddress->mobile:''}}">
                                         <p></p>
                                     </div>            
                                 </div>
@@ -102,7 +102,7 @@
 
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <textarea name="order_notes" id="order_notes" cols="30" rows="2" placeholder="Order Notes (optional)" class="form-control"></textarea>
+                                        <textarea name="order_notes" id="order_notes" cols="30" rows="2" placeholder="Order Notes (optional)" class="form-control">{{(!empty('$customerAddress')) ? $customerAddress->order_notes:''}}</textarea>
                                     </div>            
                                 </div>
 

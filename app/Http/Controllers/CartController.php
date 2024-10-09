@@ -124,12 +124,15 @@ class CartController extends Controller
             
             return redirect()->route('account.login');
         }
+
+        $customerAddress=CustomerAddress::where('user_id',Auth::user()->id)->first();
         session()->forget('url.intended');
 
         $countries= Country::orderBy('name','ASC')->get();
 
         return view('front.checkout',[
-            'countries'=>$countries
+            'countries'=>$countries,
+            'customerAddress'=>$customerAddress
         ]);
     }
     public function processCheckout(Request $request){
@@ -191,7 +194,7 @@ class CartController extends Controller
             $order->state=$request->state;
             $order->city=$request->city;
             $order->zip=$request->zip;
-            $order->notes=$request->notes;
+            $order->notes=$request->order_notes;
             $order->country_id=$request->country;
             $order->save();
 
@@ -207,9 +210,11 @@ class CartController extends Controller
                 $orderItem->save();
             }
             session()->flash('success','You have successfully placed your order.');
+
             cart::destroy();
+            
             return response()->json([
-                'message'=>"Order Saved Succesfully",
+                'message'=>"Order Saved Succesfully.",
                 'orderId'=>$order->id,
                 'status'=>true
                 
@@ -218,7 +223,10 @@ class CartController extends Controller
 
         }
     }
-    public function thankyou(){
-        return view('front.thanks');
+    public function thankyou($id){
+
+        return view('front.thanks',[
+            'id'=>$id
+        ]);
     }
 }
