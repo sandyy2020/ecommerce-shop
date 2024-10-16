@@ -32,8 +32,10 @@ class ShippingController extends Controller
             $count=ShippingCharge::where('country_id',$request->country)->count();
             if($count>0){
                 return response()->json([
-                    'status'=>true,
-                    
+                    'status'=>false,
+                    'errors' => [
+                    'country' => ['Shipping already exists for this country.']
+                ]   
                 ]);
             }
             $shipping= new ShippingCharge();
@@ -72,6 +74,7 @@ class ShippingController extends Controller
             $shipping->save();
             return response()->json([
                 'status'=>true,
+                'message'=>"Shipping updated successfully"
                
             ]);
 
@@ -81,6 +84,22 @@ class ShippingController extends Controller
                 'errors'=>$validator->errors()
             ]);
         }
+    }
+    public function destroy($id){
+        $shippingCharge= ShippingCharge::find($id);
+
+        if($shippingCharge==null){
+            return response()->json([
+                'status'=>false,
+                'message'=>'Shipping not found'
+            ]);
+
+        }
+        $shippingCharge->delete();
+        return response()->json([
+            'status'=>true,
+             'message' => 'Shipping deleted successfully'
+        ]);
     }
 
 }

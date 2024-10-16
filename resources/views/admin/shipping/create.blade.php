@@ -73,13 +73,13 @@
                                 <td>${{$shippingcharge->amount}}</td>
                                 <td>
                                     <a href="{{route('shipping.edit',$shippingcharge->id)}}" class="btn btn-primary">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <a href="javascript:void(0);" onclick="deleteRecord({{$shippingcharge->id}});" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
                             @endif
                         </table>
-                        
+
 
                     </div>
 
@@ -134,6 +134,37 @@
             });
         });
     });
+
+    function deleteRecord(id) {
+        var url = '{{route("shipping.delete","ID")}}';
+        var newUrl = url.replace("ID", id);
+
+        if (confirm("Are You Sure You want To Delete??")) {
+            $.ajax({
+                url: newUrl, // URL to delete the category
+                type: 'DELETE',
+                data: {},
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    if (response.status) {
+                        // Show the message returned from the server
+                        alert(response.message);
+                        // Redirect on success
+                        window.location.href = "{{ route('shipping.create') }}";
+                    } else {
+                        // Show the message if the status is false
+                        alert(response.message);
+                    }
+                },
+                error: function(jqXHR, exception) {
+                    alert('Something went wrong. Please try again.');
+                }
+            });
+        }
+    }
 </script>
 
 @endsection

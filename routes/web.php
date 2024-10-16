@@ -110,6 +110,7 @@ Route::group(['middleware' => 'admin.auth'], function () {
     Route::post('/admin/shipping/store',[ShippingController::class,'store'])->name('shipping.store');
     Route::get('/admin/shipping/{id}',[ShippingController::class,'edit'])->name('shipping.edit');
     Route::put('/admin/shipping/{id}',[ShippingController::class,'update'])->name('shipping.update');
+    Route::delete('/admin/shipping/{id}',[ShippingController::class,'destroy'])->name('shipping.delete');
 
     
     //temp_images

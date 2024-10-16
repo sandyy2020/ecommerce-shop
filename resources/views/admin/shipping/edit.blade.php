@@ -72,6 +72,9 @@
             // Get the form data
             var formData = new FormData($('#shippingForm')[0]);
 
+             // Add the _method field to simulate a PUT request
+             formData.append('_method', 'PUT');
+
             $.ajax({
                 url: '{{ route("shipping.update", $shippingCharge->id) }}', 
                 type: 'POST',
